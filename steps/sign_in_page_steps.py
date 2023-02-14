@@ -30,3 +30,9 @@ def step_impl(context):
 @then('SignIn Page: The log in button is disabled')
 def step_impl(context):
     context.sign_in_page_object.check_button_status()
+
+
+@then('SignIn Page: I am taken to the sign in page')
+def step_impl(context):
+    context.sign_up_page_object.verify_url('https://jules.app/sign-in')
+

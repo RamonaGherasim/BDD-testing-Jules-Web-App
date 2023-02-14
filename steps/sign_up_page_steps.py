@@ -1,5 +1,3 @@
-import time
-from selenium.webdriver.common.keys import Keys
 from behave import *
 
 
@@ -11,43 +9,37 @@ def step_impl(context):
 @when('SignUp Page: I select the "Personal" option')
 def step_impl(context):
     context.sign_up_page_object.account_option_selection()
-    time.sleep(4)
 
 
 @when('SignUp Page: I click continue')
 def step_impl(context):
     context.sign_up_page_object.click_continue()
-    time.sleep(4)
 
 
 @when('SignUp Page: I input correct first name')
 def step_impl(context):
-    context.sign_up_page_object.input_first_name("Ramona")
-    time.sleep(5)
+    context.sign_up_page_object.input_info("Ramona")
 
 
 @given('SignUp Page: I input correct last name')
 def step_impl(context):
-    context.sign_up_page_object.input_last_name("Gherasim")
-    time.sleep(4)
+    context.sign_up_page_object.input_info("Gherasim")
 
 
 @when('SignUp Page: I input an invalid email address')
 def step_impl(context):
     context.sign_up_page_object.input_info("Ramona@gmail")
-    time.sleep(3)
 
 
 @when('SignUp Page: I clear the email input')
 def step_impl(context):
     context.sign_up_page_object.clear_input()
-    time.sleep(3)
 
 
 @when('SignUp Page: I input a valid email address')
 def step_impl(context):
     context.sign_up_page_object.input_info("Ramona@gmail.com")
-    time.sleep(3)
+
 
 @when('SignUp Page: I click on the "Log in" link')
 def step_impl(context):
@@ -68,8 +60,3 @@ def step_impl(context):
 @then('SignUp Page: I am taken to the sign up page')
 def step_impl(context):
     context.sign_up_page_object.verify_url('https://jules.app/sign-up')
-
-
-@then('SignUp Page: I am taken to the sign in page')
-def step_impl(context):
-    context.sign_up_page_object.verify_url('https://jules.app/sign-in')
