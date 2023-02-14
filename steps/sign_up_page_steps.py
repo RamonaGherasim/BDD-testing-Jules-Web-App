@@ -1,3 +1,4 @@
+import time
 from behave import *
 
 
@@ -16,14 +17,18 @@ def step_impl(context):
     context.sign_up_page_object.click_continue()
 
 
-@when('SignUp Page: I input correct first name')
+@when('SignUp Page: I input correct first name and continue')
 def step_impl(context):
     context.sign_up_page_object.input_info("Ramona")
+    context.sign_up_page_object.enter()
+    time.sleep(1)
 
 
-@given('SignUp Page: I input correct last name')
+@when('SignUp Page: I input correct last name and continue')
 def step_impl(context):
     context.sign_up_page_object.input_info("Gherasim")
+    context.sign_up_page_object.enter()
+    time.sleep(1)
 
 
 @when('SignUp Page: I input an invalid email address')
@@ -40,16 +45,16 @@ def step_impl(context):
 def step_impl(context):
     context.sign_up_page_object.input_info("Ramona@gmail.com")
 
-
 @when('SignUp Page: I click on the "Log in" link')
 def step_impl(context):
     context.sign_up_page_object.click_login_link()
 
 
-@then('SignUp Page: "Please enter a valid email address." error is no longer displayed')
+@then('SignUp Page: "Please enter a valid email address." error is no longer '
+        'displayed')
 def step_impl(context):
     error = context.sign_up_page_object.invalid_email_error_display()
-    assert error == False, f"Error is still displayed"
+    assert error == False
 
 
 @then('SignUp Page: "Please enter a valid email address." error is displayed')
